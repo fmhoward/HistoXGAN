@@ -85,6 +85,67 @@ P.gan_train(
 
 ```
 
+## Tile-based Model Training / Evaluation
+For training a model on TCGA for three fold cross validation of the held out set:
+
+```
+P = sf.Project('../PROJECTS/HistoXGAN/')
+P.sources = ["TCGA_BRCA"]
+P.annotations = "../PROJECTS/HistoXGAN/tcga_brca_complete.csv"
+P.train(outcomes="high_grade",
+                params=sf.ModelParams(tile_px = 512, tile_um = 400, epochs=1,
+                l2 = 1e-05,
+                batch_size = 32,
+                drop_images = False,
+                dropout = 0.5,
+                hidden_layer_width = 256,
+                hidden_layers = 3,
+                learning_rate = 0.0001,
+                learning_rate_decay = 0.97,
+                learning_rate_decay_steps = 100000,
+                #loss = "sparse_categorical_crossentropy",
+                model = "xception",
+                optimizer = "Adam",
+                pooling = "avg",
+                toplayer_epochs = 0,
+                trainable_layers = 0),
+                filters={"high_grade": ["Y", "N"]},
+                val_strategy='k-fold',
+		val_k_fold = 3,
+                mixed_precision = True)
+```
+
+
+For training a model on all of TCGA for validation on CPTAC:
+```
+P.train(outcomes="high_grade",
+                params=sf.ModelParams(tile_px = 512, tile_um = 400, epochs=1,
+                l2 = 1e-05,
+                batch_size = 32,
+                drop_images = False,
+                dropout = 0.5,
+                hidden_layer_width = 256,
+                hidden_layers = 3,
+                learning_rate = 0.0001,
+                learning_rate_decay = 0.97,
+                learning_rate_decay_steps = 100000,
+                #loss = "sparse_categorical_crossentropy",
+                model = "xception",
+                optimizer = "Adam",
+                pooling = "avg",
+                toplayer_epochs = 0,
+                trainable_layers = 0),
+                filters={"high_grade": ["Y", "N"]},
+                val_strategy='none',
+                mixed_precision = True)
+
+P.sources = ["CPTAC_BRCA"]
+model = '../PROJECTS/HistoxGAN/models/...enter location of trained model to evaluate'
+dataset = P.dataset(tile_px = 512, tile_um = 400)
+P.evaluate(model, 'high_grade', dataset=dataset, mixed_precision = True, save_predictions = True)    
+```
+## Attention-MIL Model Training
+
 ## Hyperparameter Optimization
 To perform hyperparameter optimization, run the model_training.py file with the following parameters (example given for 50 runs for hyperparameter optimization):
 ```
