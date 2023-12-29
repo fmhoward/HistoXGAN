@@ -13,60 +13,76 @@ This github repository should be downloaded to a project directory. Installation
 
 Requirements:
 * python 3.8
-* tensorflow 2.8.0
-* opencv 4.5.5.62
-* scipy 1.7.3
-* scikit-image 0.18.3
-* pixman 0.40.0
+* pytorch 1.11
+* opencv 4.6.0.66
+* scipy 1.9.3
+* scikit-image 0.19.3
 * OpenSlide
 * Libvips 8.9
-* pandas 1.3.5
-* numpy 1.21.2
-* smac 1.4.0
+* pandas 1.5.1
+* numpy 1.21.6
 
 For full environment used for model testing please see the environment.yml file
 
 ## Setup
-This package heavily utilizes the <a href='https://github.com/jamesdolezal/slideflow/tree/master/slideflow'>Slideflow repository</a>, and reading the associated <a href='https://slideflow.dev/'>extensive documentation<a> is recommended to familiarize users with the workflow used in this project.
+This package heavily utilizes the <a href='https://github.com/jamesdolezal/slideflow/tree/master/slideflow'>Slideflow repository</a>, and reading the associated <a href='https://slideflow.dev/'>extensive documentation<a> is recommended to familiarize users with the workflow used in this environment.
 
-This code supports multiple methods of reproducing our work. For the most straightforward way, skip to the  'Replicating our Model Analysis' header, and run the model_analysis.py file with the --saved option, which can regenerate our analysis from saved predictions from TCGA / UCMC. Otherwise, please continue reading for a more complete guide to replication of our work.
+This code supports multiple methods of reproducing our work. For the most straightforward way, skip to the  'Replicating our Analysis' header, which provides detailed instructions on navigating the jupyter notebooks that performed statistical analysis of results. Otherwise, please continue reading for a more complete guide to replication.
 
-After downloading the github repository, the first step is to edit the datasets.json (located in the main directory of this repository) to reflect the location of where slide images are stored for the TCGA and UCMC datasets. 
+After downloading the github repository, the first step is to set up the datasets.json (located in the main directory of this repository) to reflect the location of where slide images are stored for the TCGA, CPTAC, and UChicago datasets.
 
-Each 'dataset' within the datasets.json has four elements:
+Each 'dataset' within the /PROJECTS/HistoXGAN/datasets.json has four elements which must be entered:
 ```
 "slides": location of the whole slide images
-"roi": location of region of interest annotations. We have provided our region of interest annotations from TCGA in the /roi/ directory
+"roi": location of region of interest annotations. We have provided our region of interest annotations used for this project in the /roi/ directory.
 "tiles": location to extract free image tiles. We disable this in our extract image function
 "tfrecords": location of tfrecords containing the extracted image tiles for slides
 ```
 	
-The TCGA slide images can be downloaded from <a href='https://portal.gdc.cancer.gov'>https://portal.gdc.cancer.gov</a>. The extracted anonymized tfrecord files from the UCMC dataset, trained models, and regions of interest are available <a href=doi.org/10.5281/zenodo.7490381>from Zenodo</a>. The tfrecords descriptor should be updated to point to the path of the UCH_BRCA_RS dataset from this link. The "roi" marker should point to the appropriate folder within the ROI zip file - the ROI subfolder should be used for all TCGA models except TCGA_BRCA_NORMAL, which uses the ROI_NORM subfolder. The PROJECTS file from Zenodo can replace the PROJECTS file from this repository to make use of pre-trained models. 
+The TCGA slide images can be downloaded from <a href='https://portal.gdc.cancer.gov'>https://portal.gdc.cancer.gov</a>, and CPTAC slides can be downloaded from <a href='https://wiki.cancerimagingarchive.net/display/Public/CPTAC+Pathology+Slide+Downloads>TCIA</a>. The "roi" marker should point to the appropriate folder within the ROI directory - the ROI subfolder should be used for all TCGA models.
 
 ## Slide Extraction
-Slide extraction can be performed by running the following command:
+Slide extraction from image slides should be performed as described in the <a href='https://slideflow.dev/slide_processing/'>slideflow documentation</a>. After setting up the datasets as above, slides can be extracted simply:
 	
 ```	
-python model_training.py -e
-```
-	
-This will automatically extract tfrecords from associated slide images. The code assumes the PROJECTS folder which contains the list of slides to use for each project is located in the directory that the model_training.py script is run from. This script automatically performs extraction with the slideflow backbone, for example -
-
-```
-SFP = sf.Project(join(PROJECT_ROOT, "UCH_RS")) # specifies the location of the project folder
-SFP.annotations = join(PROJECT_ROOT, "UCH_RS", "uch_brca_complete.csv") # specifies the location of the annotations file to use as a guide for slides to extract
-SFP.sources = ["UCH_BRCA_RS"] # specifies the dataset location
-SFP.extract_tiles(tile_px=tile_px, tile_um=tile_um, skip_missing_roi=False, save_tiles=False, skip_extracted=overwrite, roi_method = 'ignore', source="UCH_BRCA_RS", buffer=join(PROJECT_ROOT, "buffer")) # extracts tiles for the 'UCH_BRCA_RS' dataset using the specified tile pixel size (302), tile size in microns (299), without using regions of interest
+import slideflow as sf
+P = sf.Project('../PROJECTS/HistoXGAN')
+P.annotations = '../PROJECTS/HistoXGAN/annotations_tcga_complete.csv'
+P.sources = ['TCGA_ACC', 'TCGA_BLCA', ...]
+P.extract_tiles(tile_px = 512, tile_um = 400)
 ```
 
-The following sets of data are created for this project
+To extract full slide images without regions of interest for MIL models used in the study:
+
+```	
+import slideflow as sf
+P = sf.Project('../PROJECTS/HistoXGAN')
+P.annotations = '../PROJECTS/HistoXGAN/annotations_tcga_complete.csv'
+P.sources = ['TCGA_BLCA_NOROI', 'TCGA_BRCA_NOROI']
+P.extract_tiles(tile_px = 512, tile_um = 400, roi_method = 'ignore')
 ```
-UCH_BRCA_RS - extracted tiles from University of Chicago slides. These should be placed in the appropriate tfrecords directory from the datasets.json using the anonymized files uploaded to Zenodo
-UCH_BRCA_RS_FULL_ROI - extracted tiles from University of Chicago slides using pathologist specified regions of interest - an optional dataset used to assess training models from University of Chicago and validating on TCGA, not used for primary analysis of this project. 
-TCGA_BRCA_FULL_ROI - extracted tiles from TCGA using specified regions of interest
-TCGA_BRCA_NO_ROI - extracted tiles from TCGA without regions of interest
-TCGA_BRCA_NORMAL - extracted tiles from TCGA using inverse region of interest (essentially the normal tissue surrounding tumors in the dataset, used for training the tumor likelihood model)
-TCGA_BRCA_FILTERED - a dataset where tiles are filtered from the TCGA using the tumor detection module rather than pathologist annotations - an optional dataset not used for the primary analysis of this project
+
+## HistoXGAN training
+Training of HistoXGAN is fully integrated into the slideflow repository
+
+```	
+P = sf.Project('../PROJECTS/HistoXGAN')
+P.annotations = '../PROJECTS/HistoXGAN/annotations_tcga_complete.csv'
+P.sources = ['TCGA_ACC', 'TCGA_BLCA', ...]
+dataset = P.dataset(tile_px=512, tile_um=400)
+P.gan_train(
+	dataset=dataset,
+	model='stylegan3',
+	cfg='stylegan2',
+	exp_label="HistoXGAN_CTransPath",
+	gpus=4,
+	batch=32*8,
+	batch_gpu=16,
+	train_histogan = True,			#Indicator to train a HistoXGAN instead of a default StyleGAN
+	feature_extractor = 'ctranspath',	#Specify any feature extractor implemented in slideflow
+	histo_lambda = 100			#Specify weighting of the L1 loss between extracted features
+)
+
 ```
 
 ## Hyperparameter Optimization
