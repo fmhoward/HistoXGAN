@@ -25,10 +25,39 @@ def main():
     else:
         setup_progressive_steps(opts)
         create_initial_experiment_dir(opts)
-    P = sf.Project('/mnt/data/fred/PROJECTS_NEW/PANCAN_NEW/')
-    #P.sources = ["TCGA_BRCA"]
-    #P.annotations = "/mnt/data/fred/PROJECTS_NEW/TCGA_BRCA_GAN_NEW/tcga_brca_complete.csv"
-    print(opts.batch_size)
+    PROJECT_DIR = os.getcwd() + "/PROJECTS/HistoXGAN/"
+    P = sf.Project(PROJECT_DIR)
+    P.sources = [    "TCGA_ACC",
+	  "TCGA_BLCA",
+	    "TCGA_BRCA",
+		  "TCGA_CESC",
+		    "TCGA_CHOL",
+			  "TCGA_COADREAD",
+			    "TCGA_DLBC",
+				  "TCGA_ESCA",
+				    "TCGA_HNSC",
+					  "TCGA_KICH",
+					    "TCGA_KIRP",
+                           "TCGA_KIRC",
+						  "TCGA_LGG",
+						    "TCGA_LIHC",
+							  "TCGA_LUAD",
+							    "TCGA_LUSC",
+								  "TCGA_MESO",
+								    "TCGA_OV",
+									  "TCGA_PAAD",
+									    "TCGA_PCPG",
+										  "TCGA_PRAD",
+										    "TCGA_SARC",
+											  "TCGA_SKCM",
+											    "TCGA_STAD",
+												  "TCGA_TGCT",
+												    "TCGA_THCA",
+													  "TCGA_THYM",
+													    "TCGA_UCEC",
+														  "TCGA_UCS",
+														    "TCGA_UVM"]
+    P.annotations = PROJECT_DIR + "annotations_tcga_complete.csv"
     dataset = P.dataset(tile_px=512, tile_um=400)
     df_train = dataset.torch(batch_size=opts.batch_size, num_workers=int(opts.workers), drop_last = True)
     coach = Coach_Slideflow(opts, previous_train_ckpt, ds_train = df_train, ds_test = df_train)
