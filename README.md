@@ -1,6 +1,6 @@
 # HistoXGAN
 Accurate encoding of histologic images into StyleGAN space for discovery and explainability.
-
+<img src='https://github.com/fmhoward/HistoXGAN/blob/main/histoxgan_architecture.png?raw=true'>
 
 ## Attribution
 If you use this code in your work or find it helpful, please consider citing our preprint in <a href=''>bioRxiv</a>.
