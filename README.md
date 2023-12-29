@@ -87,6 +87,24 @@ P.gan_train(
 
 ```
 
+### Alternative Encoder Training
+We provide a modified verison of the encoder4editing to train the comparator encoders. This can be run as follows:
+```
+python train_e4e.py \
+--exp_dir experiment/ctranspath \
+--start_from_latent_avg \
+--w_discriminator_lambda 0.0 \
+--lambda_ctp 1.0 
+--val_interval 10000 \
+--max_steps 200000 \
+--stylegan_size 512 \
+--stylegan_weights path/to/pretrained/stylegan2.pt \
+--workers 8 \
+--batch_size 8 \
+--test_batch_size 4 \
+--test_workers 4
+```
+To train with a target of retccl feature vectors, use --lambda_retccl 1.0. To train an lpips/dists encoder, use --lambda_lpips 0.8 --lambda_dists 0.8. To train a single style encoder, use --encoder_type SingleStyleCodeEncoder
 
 ### Tile-based Model Training / Evaluation
 All annotations used for model training (grade, subtype, single gene expression, ancestry) are in the '../PROJECTS/HistoXGAN/tcga_all_annotations.csv' file. For training a model on TCGA for three fold cross validation of the held out set:
