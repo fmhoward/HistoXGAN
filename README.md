@@ -38,6 +38,47 @@ Requirements:
 For full environment used for model testing please see the environment.yml file
 
 
+## HistoXGAN Applications
+### Visualization of Histology Feature Space
+Visualizing synthetic histology from a feature vector is easily performed with HistoXGAN; the included models allow for visualization of CTransPath and RetCCL feature vectors.
+Trained models used in this work are available at https://doi.org/10.5281/zenodo.10892176. The trained HistoXGAN models alone can be downloaded from the FINAL_MODELS.rar folder in this Zenodo repository; or the trained models in conjunction with other supplemental data used to evaluate HistoXGAN can be downloaded from the HistoXGAN.rar folder.
+
+
+```
+#Load the CTransPath HistoXGAN model
+from slideflow.gan.stylegan3.stylegan3 import dnnlib, legacy, utils
+#The link here should reference the HistoXGAN model location downloaded from Zenodo
+with dnnlib.util.open_url('../FINAL_MODELS/CTransPath/snapshot.pkl') as f:
+    G = legacy.load_network_pkl(f)['G_ema'].to(device)
+
+#Select a feature vector to visualize
+#The /PROJECTS/HistoXGAN/SAVED_FEATURES folder contains extracted CTransPath feature vectors for visualization
+df = pd.read_csv('../PROJECTS/HistoXGAN/SAVED_FEATURES/brca_features_part.csv')
+feat_cols = list(df_mod.columns.values)
+feat_cols = [f for f in feat_cols if 'Feature_' in f]
+
+#Select the first feature vector in the dataset
+device = torch.device('cuda:0')
+vector_base = torch.tensor([df[feat_cols].loc[0, :].values.tolist()]).to(device)
+img_gen = G(vector_base, 0, noise_mode ='const
+
+#Convert image to 0 - 255 scale and proper W X H X C order for visualization
+import matplotlib.pyplot as plt
+img_show = ((img_gen + 1)*127.5).permute(0, 2, 3, 1).clamp(0, 255).to(torch.uint8)[0].cpu().numpy()
+fig, ax = plt.subplots()
+plt.imshow(img_show)
+plt.show()
+```
+
+
+### More Complex Visualization Tasks
+For reproducibility, we have provided code for all experiments conducted in our study are described in detail in the included Jupyter notebooks.
+Figures (part 1) contains:
+* Calculation of overall loss statistics for HistoXGAN and comparator models
+* Comparison of model predictions on real / synthetic tiles for grade, subtype, and gene expression
+* Illustration of traversal using gradient descent for models trained to predict PIK3CA and HRD status in TCGA-BRCA
+* Illustration of traversal along individual PCA componenets for models trained to predict grade, ancestry, and tissue source site (illustrating batch effect)
+
 ## HistoXGAN and model training from scratch
 ### Setup
 This package heavily utilizes the <a href='https://github.com/jamesdolezal/slideflow/tree/master/slideflow'>Slideflow repository</a>, and reading the associated <a href='https://slideflow.dev/'>extensive documentation<a> is recommended to familiarize users with the workflow used in this environment.
@@ -204,41 +245,6 @@ P.train_mil(
 )
 ```
 
-## HistoXGAN Applications
-### Visualization of Histology Feature Space
-Visualizing synthetic histology from a feature vector is easily performed with HistoXGAN; the included models allow for visualization of CTransPath and RetCCL feature vectors:
-```
-#Load the CTransPath HistoXGAN model
-from slideflow.gan.stylegan3.stylegan3 import dnnlib, legacy, utils
-with dnnlib.util.open_url('../FINAL_MODELS/CTransPath/snapshot.pkl') as f:
-    G = legacy.load_network_pkl(f)['G_ema'].to(device)
-
-#Select a feature vector to visualize
-df = pd.read_csv('../PROJECTS/HistoXGAN/SAVED_FEATURES/brca_features_part.csv')
-feat_cols = list(df_mod.columns.values)
-feat_cols = [f for f in feat_cols if 'Feature_' in f]
-
-#Select the first feature vector in the dataset
-device = torch.device('cuda:0')
-vector_base = torch.tensor([df[feat_cols].loc[0, :].values.tolist()]).to(device)
-img_gen = G(vector_base, 0, noise_mode ='const
-
-#Convert image to 0 - 255 scale and proper W X H X C order for visualization
-import matplotlib.pyplot as plt
-img_show = ((img_gen + 1)*127.5).permute(0, 2, 3, 1).clamp(0, 255).to(torch.uint8)[0].cpu().numpy()
-fig, ax = plt.subplots()
-plt.imshow(img_show)
-plt.show()
-```
-
-
-### More Complex Visualization Tasks
-For reproducibility, we have provided code for all experiments conducted in our study are described in detail in the included Jupyter notebooks.
-Figures (part 1) contains:
-* Calculation of overall loss statistics for HistoXGAN and comparator models
-* Comparison of model predictions on real / synthetic tiles for grade, subtype, and gene expression
-* Illustration of traversal using gradient descent for models trained to predict PIK3CA and HRD status in TCGA-BRCA
-* Illustration of traversal along individual PCA componenets for models trained to predict grade, ancestry, and tissue source site (illustrating batch effect)
 
 Figures (part 2) contains:
 * Traversal along attention / prediction axes from MIL models for grade and tumor subtype
