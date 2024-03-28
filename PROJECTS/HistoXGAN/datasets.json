@@ -1,0 +1,224 @@
+{
+ "CPTAC_HNSC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "CPTAC_LUAD": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "CPTAC_LSCC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "CPTAC_BRCA": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "CPTAC_COADREAD_NO_ROI": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "CPTAC_GBM_NO_ROI": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "CPTAC_PDA_NO_ROI": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "CPTAC_UCEC_NO_ROI": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_ACC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_BLCA": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_BRCA": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_CESC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_CHOL": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_COADREAD": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_DLBC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_ESCA": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_HNSC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_KICH": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ },  
+ "TCGA_KIRP": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_LGG": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_LIHC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_LUAD": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ },  
+ "TCGA_LUSC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_MESO": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_OV": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_PAAD": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ },  
+ "TCGA_PCPG": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_PRAD": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_SARC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_SKCM": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ },  
+ "TCGA_STAD": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_TGCT": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_THCA": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_THYM": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ },  								   
+ "TCGA_UCEC": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_UCS": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }, 
+ "TCGA_UVM": {
+	 "slides": "..",
+	 "roi": "..",
+	 "tiles": "..",
+	 "tfrecords": ".."
+ }
+}
