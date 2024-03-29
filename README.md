@@ -1,5 +1,6 @@
 # HistoXGAN
-Accurate encoding of histologic images into StyleGAN space for discovery and explainability.
+HistoXGAN (<b>Histo</b>logy feature e<b>X</b>plainability <b>G</b>enerative <b>A</b>dversarial <b>N</b>etwork) is a tool to perform highly accurate reconstruction of histology from latent space features. This tool can be used to explain the predictions of deep learning models that rely on extracted image features from foundational encoders, or to translate genomics or radiographic images into histology to understand histologic reflections of genomics or perform a 'virtual tumor biopsy'.
+
 <img src='https://github.com/fmhoward/HistoXGAN/blob/main/histoxgan_architecture.png?raw=true'>
 
 ## Attribution
