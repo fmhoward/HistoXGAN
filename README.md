@@ -239,7 +239,7 @@ P.extract_tiles(tile_px = 512, tile_um = 400, roi_method = 'ignore')
 ```
 
 ### HistoXGAN training
-Training of HistoXGAN is fully integrated into the slideflow repository.
+Training of HistoXGAN is fully integrated into the slideflow repository. Of note, empirical testing has shown that the weight of the L1 loss lambda parameter (histo_lambda) should be adjusted so the magnitude of L1 loss is approximately 10 at the start of training (i.e. histo_lambda = 100 for CTransPath; 10 for UNI; etc). Higher values lead to diminished diversity of produced images; lower values lead to reduced learning of features.
 
 ```	
 P = sf.Project('../PROJECTS/HistoXGAN')
