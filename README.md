@@ -4,22 +4,22 @@ HistoXGAN (<b>Histo</b>logy feature e<b>X</b>plainability <b>G</b>enerative <b>A
 <img src='https://github.com/fmhoward/HistoXGAN/blob/main/histoxgan_architecture.png?raw=true'>
 
 ## Attribution
-If you use this code in your work or find it helpful, please consider citing our preprint in <a href=''>bioRxiv</a>.
+If you use this code in your work or find it helpful, please consider citing our paper in <a href='https://www.science.org/doi/10.1126/sciadv.adq0856'>Science Advances</a>.
 ```
-@misc{howard_generative_2024,
-	title = {Generative {Adversarial} {Networks} {Accurately} {Reconstruct} {Pan}-{Cancer} {Histology} from {Pathologic}, {Genomic}, and {Radiographic} {Latent} {Features}},
-	copyright = {© 2024, Posted by Cold Spring Harbor Laboratory. The copyright holder for this pre-print is the author. All rights reserved. The material may not be redistributed, re-used or adapted without the author's permission.},
-	url = {https://www.biorxiv.org/content/10.1101/2024.03.22.586306v1},
-	doi = {10.1101/2024.03.22.586306},
-	abstract = {Artificial intelligence models have been increasingly used in the analysis of tumor histology to perform tasks ranging from routine classification to identification of novel molecular features. These approaches distill cancer histologic images into high-level features which are used in predictions, but understanding the biologic meaning of such features remains challenging. We present and validate a custom generative adversarial network – HistoXGAN – capable of reconstructing representative histology using feature vectors produced by common feature extractors. We evaluate HistoXGAN across 29 cancer subtypes and demonstrate that reconstructed images retain information regarding tumor grade, histologic subtype, and gene expression patterns. We leverage HistoXGAN to illustrate the underlying histologic features for deep learning models for actionable mutations, identify model reliance on histologic batch effect in predictions, and demonstrate accurate reconstruction of tumor histology from radiographic imaging for a ‘virtual biopsy’.},
-	language = {en},
-	urldate = {2024-03-28},
-	publisher = {bioRxiv},
+@article{howard_generative_2024,
+	title = {Generative adversarial networks accurately reconstruct pan-cancer histology from pathologic, genomic, and radiographic latent features},
+	volume = {10},
+	url = {https://www.science.org/doi/10.1126/sciadv.adq0856},
+	doi = {10.1126/sciadv.adq0856},
+	abstract = {Artificial intelligence models have been increasingly used in the analysis of tumor histology to perform tasks ranging from routine classification to identification of molecular features. These approaches distill cancer histologic images into high-level features, which are used in predictions, but understanding the biologic meaning of such features remains challenging. We present and validate a custom generative adversarial network—HistoXGAN—capable of reconstructing representative histology using feature vectors produced by common feature extractors. We evaluate HistoXGAN across 29 cancer subtypes and demonstrate that reconstructed images retain information regarding tumor grade, histologic subtype, and gene expression patterns. We leverage HistoXGAN to illustrate the underlying histologic features for deep learning models for actionable mutations, identify model reliance on histologic batch effect in predictions, and demonstrate accurate reconstruction of tumor histology from radiographic imaging for a “virtual biopsy.”},
+	number = {46},
+	urldate = {2024-11-18},
+	journal = {Science Advances},
 	author = {Howard, Frederick M. and Hieromnimon, Hanna M. and Ramesh, Siddhi and Dolezal, James and Kochanny, Sara and Zhang, Qianchen and Feiger, Brad and Peterson, Joseph and Fan, Cheng and Perou, Charles M. and Vickery, Jasmine and Sullivan, Megan and Cole, Kimberly and Khramtsova, Galina and Pearson, Alexander T.},
-	month = mar,
+	month = nov,
 	year = {2024},
-	note = {Pages: 2024.03.22.586306
-Section: New Results}}
+	note = {Publisher: American Association for the Advancement of Science},
+	pages = {eadq0856},
 ```
 
 ## Installation
