@@ -19,7 +19,7 @@ If you use this code in your work or find it helpful, please consider citing our
 	month = nov,
 	year = {2024},
 	note = {Publisher: American Association for the Advancement of Science},
-	pages = {eadq0856},
+	pages = {eadq0856}}
 ```
 
 ## Installation
