@@ -365,5 +365,6 @@ P.train_mil(
 )
 ```
 
-
+## Find Our Pre-trained Models
+We have trained HistoXGAN models with various foundation models (UNI, UNI2, HOPTIMUS0, CTRANSPATH, RETCCL) as feature extractors. Weights to these models can be found [here][https://zenodo.org/records/17161283].
 
