@@ -42,7 +42,8 @@ For full environment used for model testing please see the environment.yml file
 ## HistoXGAN Applications
 ### Visualization of Histology Feature Space
 Visualizing synthetic histology from a feature vector is easily performed with HistoXGAN; the included models allow for visualization of CTransPath and RetCCL feature vectors.
-Trained models used in this work are available at https://doi.org/10.5281/zenodo.15873924. The trained HistoXGAN models alone can be downloaded from the FINAL_MODELS.rar folder in this Zenodo repository; or the trained models in conjunction with other supplemental data used to evaluate HistoXGAN can be downloaded from the HistoXGAN.rar folder.
+Trained models used in this work are available at https://doi.org/10.5281/zenodo.15873924. The trained HistoXGAN models alone can be downloaded from the FINAL_MODELS.rar folder in this Zenodo repository; or the trained models in conjunction with other supplemental data used to evaluate HistoXGAN can be downloaded from the HistoXGAN.rar folder. We have trained additional HistoXGAN models with various foundation models (UNI, UNI2, HOPTIMUS0, CTRANSPATH, RETCCL) as feature extractors. Weights to these models can be found <a href='https://zenodo.org/records/17161283'>on Zenodo at https://zenodo.org/records/17161283</a>.
+
 
 
 The following code illustrates reconstruction of an image from CTransPath feature vectors:
@@ -365,6 +366,6 @@ P.train_mil(
 )
 ```
 
-## Find Our Pre-trained Models
-We have trained HistoXGAN models with various foundation models (UNI, UNI2, HOPTIMUS0, CTRANSPATH, RETCCL) as feature extractors. Weights to these models can be found [here][https://zenodo.org/records/17161283].
+## Find Additional Pre-trained Models
+We have trained HistoXGAN models with various foundation models (UNI, UNI2, HOPTIMUS0, CTRANSPATH, RETCCL) as feature extractors. Weights to these models can be found <a href='https://zenodo.org/records/17161283'>on Zenodo at https://zenodo.org/records/17161283</a>.
 
